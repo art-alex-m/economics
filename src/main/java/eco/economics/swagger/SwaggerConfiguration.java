@@ -1,4 +1,4 @@
-package eco.economics.config;
+package eco.economics.swagger;
 
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
