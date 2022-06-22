@@ -1,5 +1,6 @@
 package eco.economics.accountancy.entity;
 
+import eco.economics.categorizer.entity.Record;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,11 +21,13 @@ public class AdditionalClassification {
     @Column(name = "id", nullable = false)
     private UUID id;
 
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "operation_id", nullable = false)
-    private Operation operation;
+    @Column(name = "operation_id", nullable = false)
+    private UUID operationId;
 
     @Column(name = "record_id", nullable = false)
-    private UUID record_id;
+    private UUID recordId;
 
+    @OneToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "record_id", nullable = false, insertable = false, updatable = false)
+    private Record record;
 }

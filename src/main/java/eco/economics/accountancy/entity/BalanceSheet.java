@@ -25,7 +25,7 @@ public class BalanceSheet {
     private UUID id;
 
     @Column(name = "record_id", nullable = false)
-    private UUID record_id;
+    private UUID recordId;
 
     @Column(name = "date", nullable = false)
     private Timestamp date;

@@ -35,10 +35,9 @@ public class Operation {
     @Column(name = "updated_at", nullable = false)
     private Timestamp updatedAt;
 
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "operation")
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "operationId")
     private BaseClassification baseClassification;
 
-    @OneToMany(mappedBy = "operation")
+    @OneToMany(mappedBy = "operationId")
     private Set<AdditionalClassification> additionalClassifications = new LinkedHashSet<>();
-
 }

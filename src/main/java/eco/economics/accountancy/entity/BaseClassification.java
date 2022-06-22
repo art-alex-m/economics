@@ -18,18 +18,13 @@ import java.util.UUID;
 public class BaseClassification {
     @Id
     @Column(name = "operation_id", nullable = false)
-    private UUID id;
+    private UUID operationId;
 
-    @MapsId
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "operation_id", nullable = false)
-    private Operation operation;
-
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @OneToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "record_id_from", nullable = false)
-    private Record recordIdFrom;
+    private Record recordFrom;
 
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @OneToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "record_id_to", nullable = false)
-    private Record recordIdTo;
+    private Record recordTo;
 }

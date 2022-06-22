@@ -1,12 +1,15 @@
 package eco.economics.accountancy.entity;
 
-import eco.economics.categorizer.entity.Record;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.UpdateTimestamp;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.sql.Timestamp;
 import java.util.UUID;
 
@@ -19,16 +22,12 @@ import java.util.UUID;
 public class LastBalance {
     @Id
     @Column(name = "record_id", nullable = false)
-    private UUID record_id;
-
-    @MapsId
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "record_id", nullable = false)
-    private Record record;
+    private UUID recordId;
 
     @Column(name = "date", nullable = false)
     private Timestamp date;
 
+    @UpdateTimestamp
     @Column(name = "updated_at", nullable = false)
     private Timestamp updatedAt;
 }
