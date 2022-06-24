@@ -11,7 +11,7 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SwaggerConfiguration {
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain filterChainSwagger(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/swagger-ui/**").permitAll()
                 .antMatchers("/v3/api-docs/**").permitAll();

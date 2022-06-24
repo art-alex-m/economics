@@ -1,5 +1,6 @@
 package eco.economics.accountancy.controller;
 
+import eco.economics.accountancy.dto.OperationDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.MediaType;
@@ -19,8 +20,8 @@ public class OperationController {
             summary = "Create operation in log",
             operationId = "storeOperation"
     )
-    public UUID store() {
-        return UUID.randomUUID();
+    public OperationDto store() {
+        return OperationDto.builder().id(UUID.randomUUID()).build();
     }
 
 }
