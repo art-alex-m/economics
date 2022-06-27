@@ -30,14 +30,17 @@ dependencies {
     implementation 'io.swagger.core.v3:swagger-models:2.2.0'
     implementation 'org.springdoc:springdoc-openapi-ui:1.6.9'
     implementation 'com.fasterxml.uuid:java-uuid-generator:4.0.1'
+
     compileOnly 'org.projectlombok:lombok'
     runtimeOnly 'org.postgresql:postgresql'
     annotationProcessor 'org.projectlombok:lombok'
+
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.security:spring-security-test'
     testImplementation "org.testcontainers:testcontainers:1.17.2"
     testImplementation "org.testcontainers:junit-jupiter:1.17.2"
     testImplementation "org.testcontainers:postgresql:1.17.2"
+    testImplementation 'org.assertj:assertj-core:3.23.1'
 }
 
 tasks.named('test') {
