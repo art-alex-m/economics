@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.util.UUID;
 
 @RestController
@@ -21,11 +22,8 @@ public class OperationController {
             summary = "Create operation in log",
             operationId = "storeOperation"
     )
-    public OperationDto store(@RequestBody OperationDto operationDto) {
-
-        operationDto.setId(UUID.randomUUID());
-
-        return operationDto;
+    public OperationDto store(@Valid @RequestBody OperationDto operationDto) {
+        return operationDto.toBuilder().id(UUID.randomUUID()).build();
     }
 
 }

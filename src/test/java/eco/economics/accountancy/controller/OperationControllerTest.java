@@ -34,7 +34,7 @@ class OperationControllerTest extends TestWithDatabase {
     private OperationRepository operationRepository;
 
     @Test
-    void createOperationWhenDataIsCorrect() {
+    public void whenDataCorrect_thenCreateOperationSuccessful() {
 
         URI uri = testService.uri(OPERATION_URI);
 

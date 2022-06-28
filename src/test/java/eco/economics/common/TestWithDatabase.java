@@ -1,9 +1,9 @@
 package eco.economics.common;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.testcontainers.containers.PostgreSQLContainer;
-import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.utility.DockerImageName;
 
@@ -11,8 +11,14 @@ import org.testcontainers.utility.DockerImageName;
 public class TestWithDatabase {
     public final static String PG_IMAGE = "postgres:14.2-alpine";
 
-    @Container
-    private static PostgreSQLContainer postgreSQLContainer = new PostgreSQLContainer(DockerImageName.parse(PG_IMAGE));
+    private static PostgreSQLContainer postgreSQLContainer =
+            (PostgreSQLContainer) new PostgreSQLContainer(DockerImageName.parse(PG_IMAGE))
+                    .withReuse(true);
+
+    @BeforeAll
+    public static void beforeAll() {
+        postgreSQLContainer.start();
+    }
 
     @DynamicPropertySource
     private static void postgreSqlProperties(DynamicPropertyRegistry registry) {

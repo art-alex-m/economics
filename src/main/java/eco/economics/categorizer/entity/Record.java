@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -21,9 +23,12 @@ public class Record {
     @Column(name = "id", nullable = false)
     private UUID id;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "classifier_id", nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "classifier_id", nullable = false, insertable = false, updatable = false)
     private Classifier classifier;
+
+    @Column(name = "classifier_id", nullable = false)
+    private UUID classifierId;
 
     @Column(name = "title", nullable = false, length = 500)
     private String title;
@@ -31,9 +36,11 @@ public class Record {
     @Column(name = "active", nullable = false)
     private Boolean active = false;
 
+    @CreationTimestamp
     @Column(name = "created_at", nullable = false)
     private Timestamp createdAt;
 
+    @UpdateTimestamp
     @Column(name = "updated_at", nullable = false)
     private Timestamp updatedAt;
 }
