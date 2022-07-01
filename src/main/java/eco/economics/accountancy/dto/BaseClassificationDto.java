@@ -2,22 +2,24 @@ package eco.economics.accountancy.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Getter;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.UUID;
 
+@NoArgsConstructor
 @AllArgsConstructor
-@Getter
+@Data
 @Builder(toBuilder = true)
 public class BaseClassificationDto implements Serializable {
 
-    private final UUID operationId;
+    private UUID operationId;
 
     @NotNull
-    private final RecordDto recordFrom;
+    private RecordDto recordFrom;
 
     @NotNull
-    private final RecordDto recordTo;
+    private RecordDto recordTo;
 }

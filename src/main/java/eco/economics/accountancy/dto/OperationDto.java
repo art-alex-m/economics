@@ -2,7 +2,8 @@ package eco.economics.accountancy.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Getter;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -12,25 +13,26 @@ import java.sql.Timestamp;
 import java.util.Set;
 import java.util.UUID;
 
+@NoArgsConstructor
 @AllArgsConstructor
-@Getter
+@Data
 @Builder(toBuilder = true)
 public class OperationDto implements Serializable {
 
-    private final UUID id;
+    private UUID id;
 
     @NotEmpty
-    private final String title;
-
-    @NotNull
-    private final Double value;
-
-    @NotNull
     @Size(max = 500)
-    private final Timestamp date;
+    private String title;
 
     @NotNull
-    private final BaseClassificationDto baseClassification;
+    private Double value;
 
-    private final Set<AdditionalClassificationDto> additionalClassifications;
+    @NotNull
+    private Timestamp date;
+
+    @NotNull
+    private BaseClassificationDto baseClassification;
+
+    private Set<AdditionalClassificationDto> additionalClassifications;
 }

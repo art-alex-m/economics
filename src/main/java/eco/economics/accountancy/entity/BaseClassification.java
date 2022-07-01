@@ -17,7 +17,7 @@ import java.util.UUID;
 @Table(name = "base_classification")
 public class BaseClassification {
     @Id
-    @Column(name = "operation_id", nullable = false)
+    @Column(name = "operation_id", nullable = false, unique = true)
     private UUID operationId;
 
     @OneToOne(fetch = FetchType.EAGER, optional = false)

@@ -13,6 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.test.context.jdbc.Sql;
 
 import java.net.URI;
 import java.sql.Timestamp;
@@ -23,9 +24,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @Import(IntegrationTestConfiguration.class)
+@Sql(scripts = {"/fixtures/classifier_data.sql", "/fixtures/records_data.sql"})
 class OperationControllerTest extends TestWithDatabase {
 
     private final static String OPERATION_URI = "/accountancy/operation";
+
+    private final static UUID RECORD_FROM = UUID.fromString("4cea1173-dfc0-4eef-b1f2-af7a59534c31");
+    private final static UUID RECORD_TO = UUID.fromString("4cea1173-dfc0-4eef-b1f2-af7a59534c32");
 
     @Autowired
     private RestIntegrationTestService testService;
@@ -58,8 +63,8 @@ class OperationControllerTest extends TestWithDatabase {
 
     private OperationDto createOperation() {
         BaseClassificationDto baseClassification = BaseClassificationDto.builder()
-                .recordTo(RecordDto.builder().id(UUID.randomUUID()).title("RecordTo").build())
-                .recordFrom(RecordDto.builder().id(UUID.randomUUID()).title("RecordFrom").build())
+                .recordTo(RecordDto.builder().id(RECORD_TO).build())
+                .recordFrom(RecordDto.builder().id(RECORD_FROM).build())
                 .build();
 
         OperationDto operationDto = OperationDto.builder()
